@@ -1,8 +1,9 @@
 using System;
 using System.IO;
-using admin_cms.Models.Infraestrutura.Database;
+using admin_cms.Models.Dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
+
 
 namespace admin_cms.Models.Infraestrutura.Database
 {
@@ -18,6 +19,6 @@ namespace admin_cms.Models.Infraestrutura.Database
       optionsBuilder.UseSqlServer(jAppSettings["ConexaoSql"].ToString());
     }
     public DbSet<Administrador> Administradores { get; set; }
-    public DbSet<Pagina> Paginas { get; set; }
-
+    
+ }
 }

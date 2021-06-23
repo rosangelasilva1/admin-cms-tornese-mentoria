@@ -5,7 +5,7 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 
-namespace admin_cms.Models.Domino.Entidades
+namespace admin_cms.Models.Dominio.Entidades
 {
   public class Administrador
   {

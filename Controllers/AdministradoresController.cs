@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using admin_cms.Models.Dominio.Entidades;
 using admin_cms.Models.Infraestrutura.Database;
+using admin_cms.Models.Infraestrutura.Autenticacao;
 
-namespace admin_cms.COntrollers
+namespace admin_cms.Controllers
 {
+    [Logado]
     public class AdministradoresController : Controller
     {
         private readonly ContextoCms _context;
@@ -18,7 +20,8 @@ namespace admin_cms.COntrollers
         {
             _context = context;
         }
-
+        
+        
         // GET: Administradores
         public async Task<IActionResult> Index()
         {

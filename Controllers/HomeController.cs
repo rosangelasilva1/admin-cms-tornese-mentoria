@@ -18,7 +18,7 @@ namespace admin_cms.Controllers
         {
             _logger = logger;
         }
-
+        
         public IActionResult Index()
 
         {

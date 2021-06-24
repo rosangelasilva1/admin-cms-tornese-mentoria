@@ -5,34 +5,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using admin_cms.Models;
 using Microsoft.AspNetCore.Http;
-using admin_cms.Models.Infraestrutura.Autenticacao;
+
 namespace admin_cms.Controllers
 {
-     
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<LoginController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public LoginController(ILogger<LoginController> logger)
         {
             _logger = logger;
         }
         
-        [Logado]
         public IActionResult Index()
-
         {
-            
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-        //    this.HttpContext.Response.Cookies.Append("alunos", "alunos do torne-se um programador",new CookieOptions
-        //     {
-        //         Expires = DateTimeOffset.UtcNow.AddSeconds(10),
-        //         HttpOnly = true,
-        //     });
             return View();
         }
 

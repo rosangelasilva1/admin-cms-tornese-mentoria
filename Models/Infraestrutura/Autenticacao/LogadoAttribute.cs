@@ -6,14 +6,13 @@ using Microsoft.AspNetCore.Routing;
 
 namespace admin_cms.Models.Infraestrutura.Autenticacao
 {
-
     public class LogadoAttribute : ActionFilterAttribute
     {   
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if( string.IsNullOrEmpty(filterContext.HttpContext.Request.Cookies["alunos"]))
+            if( string.IsNullOrEmpty(filterContext.HttpContext.Request.Cookies["adm_cms"]))
             {
-                filterContext.HttpContext.Response.Redirect("/");
+                filterContext.HttpContext.Response.Redirect("/login");
                 return;
             }
 

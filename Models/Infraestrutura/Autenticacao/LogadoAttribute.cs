@@ -11,7 +11,7 @@ namespace admin_cms.Models.Infraestrutura.Autenticacao
     {   
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if( string.IsNullOrEmpty(filterContext.HttpContext.Session.GetString("alunos")))
+            if( string.IsNullOrEmpty(filterContext.HttpContext.Request.Cookies["alunos"]))
             {
                 filterContext.HttpContext.Response.Redirect("/");
                 return;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using admin_cms.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace admin_cms.Controllers
 {
@@ -19,12 +20,15 @@ namespace admin_cms.Controllers
         }
 
         public IActionResult Index()
+
         {
+            ViewBag.Message = this.HttpContext.Session.GetString("alunos");
             return View();
         }
 
         public IActionResult Privacy()
         {
+            this.HttpContext.Session.SetString("alunos", "alunos do torne-se um programador");
             return View();
         }
 

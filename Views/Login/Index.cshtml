@@ -1,7 +1,38 @@
-﻿
-@{
+﻿@{
     Layout = "_LayoutLogin";
 }
-<div class="text-center">
-    <h1 class="display-4">FAÇA SEU LOGIN</h1>
-</div>
+
+<div class="card">
+    <article class="card-body">
+        <h4 class="card-title text-center mb-4 mt-1">Login</h4>
+        <hr>
+        @if(!string.IsNullOrEmpty(ViewBag.erro)){
+        <div class="alert alert-danger" style="margin:10px">
+            @ViewBag.erro
+        </div>
+        }
+        <form action="/login/logar" method="post">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Digite seu E-mail" type="email" name="email">
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Digite sua senha" type="password" name="senha">
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Entrar </button>
+            </div> <!-- form-group// -->
+
+        </form>
+    </article>
+</div> <!-- card.// -->
+

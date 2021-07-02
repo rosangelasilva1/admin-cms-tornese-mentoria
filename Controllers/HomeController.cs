@@ -28,11 +28,7 @@ namespace admin_cms.Controllers
 
         public IActionResult Privacy()
         {
-        //    this.HttpContext.Response.Cookies.Append("alunos", "alunos do torne-se um programador",new CookieOptions
-        //     {
-        //         Expires = DateTimeOffset.UtcNow.AddSeconds(10),
-        //         HttpOnly = true,
-        //     });
+        
             return View();
         }
 

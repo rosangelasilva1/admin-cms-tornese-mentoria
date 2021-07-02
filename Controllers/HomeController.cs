@@ -26,6 +26,12 @@ namespace admin_cms.Controllers
             return View();
         }
 
+        public IActionResult Sair()
+        {
+            this.HttpContext.Response.Cookies.Delete("adm_cms");
+            return Redirect("/login");
+        }
+
         public IActionResult Privacy()
         {
         

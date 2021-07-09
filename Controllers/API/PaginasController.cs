@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using admin_cms.Models.Infraestrutura.Database;
+using admin_cms.Models.Dominio.Entidades;
 
 namespace admin_cms.Controllers.API
 {
@@ -15,12 +16,21 @@ namespace admin_cms.Controllers.API
         }
 
         // GET: Paginas
-        [Route("/api/paginas.json")]
         [HttpGet]
+        [Route("/api/paginas.json")]
         public async Task<IActionResult> Index()
         {
             return StatusCode(200,await _context.Paginas.ToListAsync());
         }
+
+        [HttpPost]
+        [Route("/api/paginas.json")]
+        public async Task<IActionResult> Create([FromBody] Pagina pagina)
+        {
+            _context.Add(pagina);
+            await _context.SaveChangesAsync();
+            return StatusCode(201);
+        }        
 
     }
 }

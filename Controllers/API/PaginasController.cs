@@ -42,5 +42,26 @@ namespace admin_cms.Controllers.API
             return StatusCode(200);
         }        
 
+        [HttpDelete]
+        [Route("/api/paginas/{id}.json")]
+        public async Task<IActionResult> Delete(int id)
+        {
+              
+            if (id == 0)
+            {
+                return StatusCode(400,new {Mensagem="O Id é Obrigatorio"});
+            }
+
+            var pagina = await _context.Paginas.FirstOrDefaultAsync(m => m.Id == id);
+            if (pagina == null)
+            {
+                return StatusCode(404,new {Mensagem="A Pagina não foi encontrada"});
+            }
+
+            _context.Paginas.Remove(pagina);
+            await _context.SaveChangesAsync();
+            return StatusCode(204);
+        }        
+
     }
 }

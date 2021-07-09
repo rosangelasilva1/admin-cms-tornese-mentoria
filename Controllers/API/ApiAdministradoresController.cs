@@ -8,11 +8,11 @@ using admin_cms.Models.Infraestrutura.Database;
 namespace admin_cms.Controllers.API
 {
 
-    public class AdministradoresController : ControllerBase
+    public class ApiAdministradoresController : ControllerBase
     {
         private readonly ContextoCms _context;
 
-        public AdministradoresController(ContextoCms context)
+        public ApiAdministradoresController(ContextoCms context)
         {
             _context = context;
         }

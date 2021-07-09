@@ -32,5 +32,15 @@ namespace admin_cms.Controllers.API
             return StatusCode(201);
         }        
 
+        [HttpPut]
+        [Route("/api/paginas/{id}.json")]
+        public async Task<IActionResult> Update(int id,[FromBody] Pagina pagina)
+        {
+            pagina.Id = id;
+            _context.Update(pagina);
+            await _context.SaveChangesAsync();
+            return StatusCode(200);
+        }        
+
     }
 }

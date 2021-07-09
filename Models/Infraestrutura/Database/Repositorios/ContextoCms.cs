@@ -19,6 +19,7 @@ namespace admin_cms.Models.Infraestrutura.Database
       optionsBuilder.UseSqlServer(jAppSettings["ConexaoSql"].ToString());
     }
     public DbSet<Administrador> Administradores { get; set; }
+    public DbSet<Pagina> Paginas { get; set; }
     
  }
 }

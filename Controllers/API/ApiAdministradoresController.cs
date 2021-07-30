@@ -77,5 +77,18 @@ namespace admin_cms.Controllers.API
             await _context.SaveChangesAsync();
             return StatusCode(200);
         }
+
+        // GET totalRegistos: Administradores
+        [Route("/api/administradores/qtde_registros.json")]
+        [HttpGet]
+        public async Task<IActionResult> QtdeTotal()
+        {
+            var adms = from adm in( await _context.Administradores.ToListAsync())
+                select new {
+                    Id = adm.Id
+                };
+            int qtde_total = adms.Count();
+            return StatusCode(200,qtde_total);
+        }
     }
 }

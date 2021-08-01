@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using admin_cms.Models.Infraestrutura.Database;
 using admin_cms.Models.Dominio.Entidades;
+using admin_cms.Models.Dominio.Services;
+using System.Linq;
+using X.PagedList;
 
 namespace admin_cms.Controllers.API
 {
@@ -18,25 +21,35 @@ namespace admin_cms.Controllers.API
         // GET: Paginas
         [HttpGet]
         [Route("/api/paginas.json")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
-            return StatusCode(200,await _context.Paginas.ToListAsync());
+            return StatusCode(200,await _context.Paginas.ToPagedListAsync(page,PaginaService.ITENS_POR_PAGINA));
         }
+
+
+         // GET ById: Paginas
+        [HttpGet]
+        [Route("/api/paginas/{id}.json")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            Pagina pag = await _context.Paginas.FindAsync(id);
+            return StatusCode(200,pag);
+        }
+
 
         [HttpPost]
         [Route("/api/paginas.json")]
-        public async Task<IActionResult> Create([FromBody] Pagina pagina)
+        public async Task<IActionResult> Criar([FromBody] Pagina pagina)
         {
             _context.Add(pagina);
             await _context.SaveChangesAsync();
-            return StatusCode(201);
+            return StatusCode(201,pagina);
         }        
 
         [HttpPut]
         [Route("/api/paginas/{id}.json")]
-        public async Task<IActionResult> Update(int id,[FromBody] Pagina pagina)
+        public async Task<IActionResult> Change([FromBody] Pagina pagina)
         {
-            pagina.Id = id;
             _context.Update(pagina);
             await _context.SaveChangesAsync();
             return StatusCode(200);
@@ -61,7 +74,20 @@ namespace admin_cms.Controllers.API
             _context.Paginas.Remove(pagina);
             await _context.SaveChangesAsync();
             return StatusCode(204);
-        }        
+        }     
+
+        // GET totalRegistos: Paginas
+        [Route("/api/paginas/qtde_registros.json")]
+        [HttpGet]
+        public async Task<IActionResult> QtdeTotal()
+        {
+            var pags = from pag in( await _context.Paginas.ToListAsync())
+                select new {
+                    Id = pag.Id
+                };
+            int qtde_total = pags.Count();
+            return StatusCode(200,qtde_total);
+        }   
 
     }
 }
